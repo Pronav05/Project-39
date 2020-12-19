@@ -57,9 +57,11 @@ class Game{
                        
                      if(index === player.index){
                          
-                         fill("black");
+                        push(); 
+                        fill("black");
                          textSize(25);
                          text(allPlayers[plr].name ,x-25,y+25);
+                         pop();
 
                          
                      }
@@ -102,6 +104,13 @@ class Game{
                  
                   if (player.index !== null) {
                      //fill code here, to destroy the objects.
+                     for(var i=0; i<fruitGroup.length; i++){
+                        if(fruitGroup.get(i).isTouching(players)){
+                            fruitGroup.get(i).destroy();
+                            player.score = player.score + 1;
+                            player.update();
+                        }
+                     }
                   }
                 
 
